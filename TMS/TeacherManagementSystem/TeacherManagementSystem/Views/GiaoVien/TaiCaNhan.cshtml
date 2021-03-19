@@ -1,0 +1,176 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+@{ 
+    //Tinh tai
+    double phanTramDaoTao;
+    double phanTramNghienCuu;
+    if (ViewBag.GiaoVien.dm_t.DinhMucDaoTao != 0)
+    {
+        phanTramDaoTao = ViewBag.GiaoVien.dm_t.ThucTai_DaoTao / ViewBag.GiaoVien.dm_t.TaiYeuCau_DaoTao * 100;
+    }
+    else
+    {
+        phanTramDaoTao = 0;
+    }
+
+    if(ViewBag.GiaoVien.dm_t.DinhMucNghienCuu != 0)
+    {
+        phanTramNghienCuu = ViewBag.GiaoVien.dm_t.ThucTai_NghienCuu / ViewBag.GiaoVien.dm_t.TaiYeuCau_NghienCuu * 100;
+    }
+    else
+    {
+        phanTramNghienCuu = 0;
+    }
+
+}
+
+<html>
+<head>
+    <title>Tải-@ViewBag.GiaoVien.HoTen</title>
+    <link rel="stylesheet" href="~/Content/Site.css"/> 
+    <link href="~/Content/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="~/Content/sb-admin-2.min.css" rel="stylesheet" />
+    <!-- bootstrap 4 -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class=" text-center">
+            <nav class="navbar bg-primary">
+                <a href="/GiaoVien/Sua/@ViewBag.GiaoVien.MaGV" class="btn btn-lg nav-back-primary text-white" style="background-color: #449eff; height: 100%;"><i class="fas fa-long-arrow-alt-left"></i> Back</a>
+            </nav>
+        </div>
+    </header>
+    <section class="page container">
+        <div class="row header pad-tb-30 text-center">
+            <div class="col-md-6 text-center">
+                <h6 class="">HỌC VIỆN KỸ THUẬT QUÂN SỰ</h6>
+            </div>
+            <div class="col-md-6 text-center">
+                <h6 class="col-md-6">KHOA CHỈ HUY THAM MƯU KỸ THUẬT</h6>
+            </div>
+        </div>
+        <div class="text-center pad-b-20">
+            <h3 class="text-primary">Tổng hợp kết quả công tác cá nhân</h3>
+        </div>
+        <section class="infoTable">
+            <div class="row">
+                <div class="col-md-2 info-col text-right"><h5>Họ và tên:</h5></div>
+                <div class="col-md-4 info-data border-1-white text-left"><h5>@ViewBag.GiaoVien.HoTen</h5></div>
+                <div class="col-md-6 info-data"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 info-col text-right"><h5>Đơn vị:</h5></div>
+                <div class="col-md-4 info-data border-1-white text-left"><h5>@ViewBag.GiaoVien.DonVi</h5></div>
+                <div class="col-md-6 info-data"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 info-col text-right"><h5>Chức vụ:</h5></div>
+                <div class="col-md-4 info-data border-1-white text-left"><h5>@ViewBag.GiaoVien.ChucVuChinhQuyen</h5></div>
+                <div class="col-md-6 info-data"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 info-col text-right"><h5>Học hàm:</h5></div>
+                <div class="col-md-4 info-data border-1-white text-left"><h5>@ViewBag.GiaoVien.HocHam</h5></div>
+                <div class="col-md-6 info-data"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 info-col text-right"><h5>Học vị:</h5></div>
+                <div class="col-md-4 info-data border-1-white text-left"><h5>@ViewBag.GiaoVien.HocVi</h5></div>
+                <div class="col-md-6 info-data"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 info-col text-right"></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>Thực tải</h6></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>Đơn vị</h6></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>Định mức chuẩn</h6></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>Tải yêu cầu</h6></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>Đạt</h6></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 info-col text-right"><h5>I. Tổng tải đào tạo</h5></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>@ViewBag.GiaoVien.dm_t.ThucTai_DaoTao</h6></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>giờ</h6></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>@ViewBag.GiaoVien.dm_t.DinhMucDaoTao</h6></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>@ViewBag.GiaoVien.dm_t.TaiYeuCau_DaoTao</h6></div>
+                @if (phanTramDaoTao < 100)
+                {
+                    <div class="col-md-2 text-center" style="background-color: red;"><h6 style="color: white;">@String.Format("{0:0.00}%", phanTramDaoTao)</h6></div>
+                }
+                else
+                {
+                    <div class="col-md-2 text-center" style="background-color: green;"><h6 style="color: white;">@String.Format("{0:0.00}%", phanTramDaoTao)</h6></div>
+
+                }
+            </div>
+            <div class="row">
+                <div class="col-md-2 info-col text-right"><h6>1.1 Tải giảng dạy</h6></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>@ViewBag.GiaoVien.dm_t.TaiGiangDay</h6></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>giờ</h6></div>
+                <div class="col-md-2 info-data text-center"></div>
+                <div class="col-md-2 info-data text-center"></div>
+                <div class="col-md-2 info-data text-center"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 info-col text-right"><h6>1.2 Tải hướng dẫn</h6></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>@ViewBag.GiaoVien.dm_t.TaiHuongDan</h6></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>giờ</h6></div>
+                <div class="col-md-2 info-data text-center"></div>
+                <div class="col-md-2 info-data text-center"></div>
+                <div class="col-md-2 info-data text-center"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 info-col text-right"><h6>1.3 Tải khảo thí</h6></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>@ViewBag.GiaoVien.dm_t.TaiKhaoThi</h6></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>giờ</h6></div>
+                <div class="col-md-2 info-data text-center"></div>
+                <div class="col-md-2 info-data text-center"></div>
+                <div class="col-md-2 info-data text-center"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 info-col text-right"><h6>1.3 Tải hội đồng</h6></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>@ViewBag.GiaoVien.dm_t.TaiHoiDong</h6></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>giờ</h6></div>
+                <div class="col-md-2 info-data text-center"></div>
+                <div class="col-md-2 info-data text-center"></div>
+                <div class="col-md-2 info-data text-center"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 info-col text-right"><h5>II. Tổng tải nghiên cứu</h5></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>@ViewBag.GiaoVien.dm_t.ThucTai_NghienCuu</h6></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>giờ</h6></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>@ViewBag.GiaoVien.dm_t.DinhMucNghienCuu</h6></div>
+                <div class="col-md-2 info-data text-center border-1-white"><h6>@ViewBag.GiaoVien.dm_t.TaiYeuCau_NghienCuu</h6></div>
+                @if (phanTramNghienCuu < 100)
+                {
+                    <div class="col-md-2 text-center" style="background-color: red;"><h6 style="color: white;">@String.Format("{0:0.00}%", phanTramNghienCuu)</h6></div>
+                }
+                else
+                {
+                    <div class="col-md-2 text-center" style="background-color: green;"><h6 style="color: white;">@String.Format("{0:0.00}%", phanTramNghienCuu)</h6></div>
+
+                }
+            </div>
+        </section>
+    </section>
+
+
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/Content/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="~/Scripts/sb-admin-2.min.js"></script>
+</body>
+</html>

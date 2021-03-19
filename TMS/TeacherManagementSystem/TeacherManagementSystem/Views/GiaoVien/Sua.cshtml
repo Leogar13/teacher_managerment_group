@@ -1,0 +1,988 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Sửa giáo viên</title>
+    <!-- Custom fonts for this template-->
+    <link href="~/Content/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="~/Content/sb-admin-2.min.css" rel="stylesheet" />
+    <!-- bootstrap 4 -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <!-- Page Wrapper -->
+    <div id="topPage"></div>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-text mx-3">Quản lý giáo viên</div>
+            </a>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+            <!-- Nav Item - Welcome -->
+            <li class="nav-item ">
+                <a class="nav-link" href="@Url.Action("Index","Home")">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Chào mừng</span>
+                </a>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Giáo viên
+            </div>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Quản lý giáo viên</span>
+                </a>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Thông tin:</h6>
+                        <a class="collapse-item" href="@Url.Action("Index","GiaoVien")">Giáo viên</a> <!-- tìm,in và cập nhật lý lich giáo viên -->
+                        <a class="collapse-item" href="@Url.Action("Them","GiaoVien")">Thêm giáo viên</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Tổng hợp</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("TonghopTai","ThongKe")">Tổng hợp tải</a>
+                        <a class="collapse-item" href="@Url.Action("NhanLuc","ThongKe")">Nhân lực</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Phân công
+            </div>
+
+            <!-- Nav Item - Đào tạo -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDaotao" aria-expanded="true" aria-controls="collapseDaotao">
+                    <i class="fas fa-fw fa-graduation-cap"></i>
+                    <span>Đào tạo</span>
+                </a>
+                <div id="collapseDaotao" class="collapse" aria-labelledby="headingDaotao" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("ThemDaotao","Home")">Thêm Đào tạo</a>
+                        <a class="collapse-item" href="@Url.Action("PhancongDaotao","Home")">Phân công Đào tạo</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Nghiên cứu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNghiencuu" aria-expanded="true" aria-controls="collapseNghiencuu">
+                    <i class="fas fa-fw fa-microscope"></i>
+                    <span>Nghiên cứu</span>
+                </a>
+                <div id="collapseNghiencuu" class="collapse" aria-labelledby="headingNghiencuu" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("ThemNghienCuu","Home")">Nghiệm vụ nghiên cứu</a>
+                        <a class="collapse-item" href="@Url.Action("PhancongNghiencuu","Home")">Phân công Nghiên cứu</a>
+                        <a class="collapse-item" href="@Url.Action("Index","Nghiencuu")">Nghiên cứu</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                    </ul>
+                </nav>
+                <!-- End of Topbar -->
+
+
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- Page Heading -->
+                    <div>
+                        <h1 style="display: inline-block" class="h3 mb-4 text-gray-800">Sửa giáo viên</h1>
+                        <div class="dropdown" style="display:inline;">
+                            <span class="btn btn-sm pull-right" id="drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position: sticky; left: 88%;"><i class="fas fa-ellipsis-v"></i></span>
+                            <div class="dropdown-menu" style="padding: 0;" aria-labelledby="drop">
+                                <span class="btn btn-danger btn-sm" style="width: 100%; border-radius: 0;" onclick="del('gv_@(ViewBag.GiaoVien.MaGV)')">Xóa Giáo Viên</span>
+                                <span class="btn btn-outline-dark btn-sm" style="width: 100%; border-radius: 0;" onclick="del('nghi_@(ViewBag.GiaoVien.MaGV)')">Giáo viên đã nghỉ làm</span>
+                                <span class="btn btn-outline-dark btn-sm" style="width: 100%; border-radius: 0;" href="#">In mẫu lý lịch khoa học</span>
+                                <a class="btn btn-outline-dark btn-sm" style="width: 100%; border-radius: 0;" href="/GiaoVien/TaiCaNhan/@ViewBag.GiaoVien.MaGV">Tính tải cá nhân</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tabs -->
+                    <section id="tabs">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <nav>
+                                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                            <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Sửa giáo viên</a>
+                                        </div>
+                                    </nav>
+                                    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                            <!-- Form Tag -->
+                                            <form method="post" action="@Url.Action("Sua","GiaoVien")">
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-1">
+                                                        <label for="maGV">MGV</label>
+                                                        <input type="text" class="form-control" id="maGV" name="TT_MaGV" readonly="readonly" value="@ViewBag.GiaoVien.MaGV">
+                                                    </div>
+                                                    <div class="form-group col-md-2">
+                                                        <label for="maGV">Trạng thái</label>
+                                                        @if (ViewBag.GiaoVien.NgayKetThuc == null)
+                                                        {
+                                                            <input type="text" class="form-control" readonly="readonly" value="Đang hoạt động" style="border: 1px solid green;">
+                                                        }
+                                                        else
+                                                        {
+                                                            <input type="text" class="form-control" readonly="readonly" value="Đã nghỉ" style="border: 1px solid red;">
+                                                        }
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                        <label>Ngày sinh:</label>
+                                                        <input type="date" class="form-control" name="TT_NgaySinh" value="@ViewBag.GiaoVien.NgaySinh.ToString("yyyy-MM-dd")">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="inputName">Họ và tên:</label>
+                                                        <input type="text" class="form-control" id="inputName" name="TT_HoTen" value="@ViewBag.GiaoVien.HoTen">
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-4">
+                                                        <label for="inputGender">Giới tính:</label>
+                                                        <select id="inputGender" class="form-control selectpicker" name="TT_GioiTinh" data-live-search="true">
+                                                            @if (ViewBag.GiaoVien.GioiTinh == "Nam")
+                                                            {
+                                                                <option>Nam</option>
+                                                                <option>Nữ</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option>Nữ</option>
+                                                                <option>Nam</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-4">
+                                                        <label for="inputState">Quê quán</label>
+                                                        <select id="inputState" name="TT_QueQuan" class="form-control selectpicker" data-live-search="true">
+                                                            <option data-tokens="hanoi" selected="">Hà Nội</option>
+                                                            @foreach (var tp in ViewBag.TinhThanhPho)
+                                                            {
+                                                                if (tp == ViewBag.GiaoVien.QueQuan)
+                                                                {
+                                                                    <option selected>@tp</option>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <option>@tp</option>
+                                                                }
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-4">
+                                                        <label for="inputSubject">Bộ môn hoạt động:</label>
+                                                        <select id="inputSubject" name="TT_BoMon" class="form-control selectpicker" data-live-search="true">
+                                                            @foreach (var bm in ViewBag.BoMon)
+                                                            {
+                                                                if (bm == ViewBag.GiaoVien.BoMon)
+                                                                {
+                                                                    <option selected>@bm</option>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <option>@bm</option>
+                                                                }
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="dropdown-divider"></div>
+                                                <h3>1.Thông tin liên lạc <span class="btn btn-primary btn-circle btn-sm" id="add1" onclick="add(1);" style="cursor: pointer;"><i class="fas fa-plus"></i></span></h3>
+
+
+                                                @*id = "ttll{id}"*@
+
+                                                <div id="ls_Container">
+                                                    @foreach (var ls in ViewBag.GiaoVien.lichSu)
+                                                    {
+                                                        <div id="ls@(ls.MaLienHe)" class="element1 card bg-gray-200" style="padding-top: 10px; margin-top: 10px; margin-bottom: 10px;">
+                                                            <span class="btn btn-danger btn-sm btn-circle" style="cursor: pointer;position: sticky;left: 100%;" onclick="del('ls_@(ls.MaLienHe)');"><i class="fas fa-minus"></i></span>
+                                                            <div class="form-row">
+                                                                <input class="hidden" type="hidden" value="@ls.MaLienHe" name="ls_MLH@(ls.MaLienHe)" />
+                                                                <div class="form-group col-md-4">
+                                                                    <label for="thoiGian@(ls.MaLienHe)">Ngày bắt đầu: (MM-dd-yyyy)</label>
+                                                                    <input class="form-control" type="date" name="ls_ThoiGian@(ls.MaLienHe)" id="thoiGian@(ls.MaLienHe)" value="@ls.ThoiGian.ToString("yyyy-MM-dd")">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-4">
+                                                                    <label for="phuong@(ls.MaLienHe)">Phường:</label>
+                                                                    <input type="text" class="form-control" name="ls_Phuong@(ls.MaLienHe)" id="phuong@(ls.MaLienHe)" value="@ls.Phuong" placeholder="Nhập Phường">
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label for="quan@(ls.MaLienHe)">Quận:</label>
+                                                                    <input type="text" class="form-control" name="ls_Quan@(ls.MaLienHe)" id="quan@(ls.MaLienHe)" value="@ls.Quan" placeholder="Nhập Quận">
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label for="thanhPho@(ls.MaLienHe)">Thành phố:</label>
+                                                                    <select id="thanhPho@(ls.MaLienHe)" name="ls_ThanhPho@(ls.MaLienHe)" class="form-control selectpicker" data-live-search="true">
+                                                                        @foreach (var tp in ViewBag.TinhThanhPho)
+                                                                        {
+                                                                            if (tp == ls.ThanhPho)
+                                                                            {
+                                                                                <option selected>@tp</option>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <option>@tp</option>
+                                                                            }
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-4">
+                                                                    <label for="dtNR@(ls.MaLienHe)">Số điện thoại nhà riêng:</label>
+                                                                    <input class="form-control" type="text" name="ls_DTNR@(ls.MaLienHe)" id="dtNR@(ls.MaLienHe)" value="@ls.DTNhaRieng" placeholder="Nhập SĐT Nhà Riêng">
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label for="dtDD@(ls.MaLienHe)">Số điện thoại di động</label>
+                                                                    <input class="form-control" type="text" name="ls_DTDD@(ls.MaLienHe)" id="dtDD@(ls.MaLienHe)" value="@ls.DTDiDong" placeholder="Nhập SĐT Di Động">
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label for="email@(ls.MaLienHe)">Email:</label>
+                                                                    <input type="email" class="form-control" name="ls_Email@(ls.MaLienHe)" id="email@(ls.MaLienHe)" aria-describedby="emailHelp" placeholder="Nhập email" value="@ls.Email">
+                                                                    <small id="emailHelp" class="form-text text-muted">Nhập đúng format email.</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+
+
+                                                <br />
+                                                <div class="dropdown-divider"></div>
+
+                                                <h3>2. Thông tin thân nhân <span class="btn btn-primary btn-circle btn-sm" id="add2" onclick="add(2);" style="cursor: pointer;"><i class="fas fa-plus"></i></span></h3>
+
+                                                <div id="tn_Container">
+                                                    @foreach (var tn in ViewBag.GiaoVien.listThanNhan)
+                                                    {
+                                                        <div id="tn@(tn.MaThanNhan)" class="element2 card bg-gray-200" style="padding-top: 10px; margin-top: 10px; margin-bottom: 10px;">
+                                                            <span class="btn btn-danger btn-sm btn-circle" style="cursor: pointer;position: sticky;left: 100%;" onclick="del('tn_@(tn.MaThanNhan)');"><i class="fas fa-minus"></i></span>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-4">
+                                                                    <input class="hidden" type="hidden" value="@tn.MaThanNhan" name="tn_MTN@(tn.MaThanNhan)" />
+                                                                    <label for="tenTN@(tn.MaThanNhan)">Họ và tên thân nhân:</label>
+                                                                    <input type="text" class="form-control" id="tenTN@(tn.MaThanNhan)" name="tn_TenTN@(tn.MaThanNhan)" value="@tn.TenThanNhan" placeholder="Họ và tên">
+                                                                </div>
+                                                                <div class="form-group col-md-2">
+                                                                    <label for="gioiTinhTN@(tn.MaThanNhan)">Giới tính:</label>
+                                                                    <select id="gioiTinhTN@(tn.MaThanNhan)" name="tn_GioiTinh@(tn.MaThanNhan)" class="form-control selectpicker" data-live-search="true">
+                                                                        @if (tn.GioiTinh == "Nam")
+                                                                        {
+                                                                            <option>Nam</option>
+                                                                            <option>Nữ</option>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <option>Nữ</option>
+                                                                            <option>Nam</option>
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="ngaySinhTN@(tn.NgaySinh)">Ngày sinh:</label>
+                                                                    <input class="form-control" type="date" id="ngaySinhTN@(tn.MaThanNhan)" name="tn_NgaySinh@(tn.MaThanNhan)" value="@tn.NgaySinh.ToString("yyyy-MM-dd")">
+
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="ngheNghiepTN@(tn.NgheNghiep)">Nghề nghiệp:</label>
+                                                                    <input type="text" class="form-control" id="ngheNghiepTN@(tn.MaThanNhan)" name="tn_NgheNghiep@(tn.MaThanNhan)" value="@tn.NgheNghiep" placeholder="Nghề nghiệp">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                                <br />
+                                                <div class="dropdown-divider"></div>
+                                                <h3>3. Trình độ học vấn <span class="btn btn-primary btn-circle btn-sm" id="add3" onclick="add(3);" style="cursor: pointer;"><i class="fas fa-plus"></i></span></h3>
+                                                <div id="hv_Container">
+                                                    @foreach (var hv in ViewBag.GiaoVien.listHocVan)
+                                                    {
+                                                        <div id="hv@(hv.MaHocVan)" class="element3 card bg-gray-200" style="padding-top: 10px; margin-top: 10px; margin-bottom: 10px;">
+                                                            <span class="btn btn-danger btn-sm btn-circle" style="cursor: pointer;position: sticky;left: 100%;" onclick="del('hv_@(hv.MaHocVan)');"><i class="fas fa-minus"></i></span>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-4">
+                                                                    <input type="hidden" class="hidden" name="hv_MHV@(hv.MaHocVan)" value="@hv.MaHocVan" />
+                                                                    <label for="namCapHv@(hv.MaHocVan)">Năm cấp:</label>
+                                                                    <input type="number" class="form-control" name="hv_NamCap@(hv.MaHocVan)" id="namCapHv@(hv.MaHocVan)" value="@hv.NamCap" placeholder="Chọn năm cấp">
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label for="hocVi@(hv.MaHocVan)">Học vị:</label>
+                                                                    <select id="hocVi@(hv.MaHocVan)" name="hv_HocVi@(hv.MaHocVan)" class="form-control selectpicker" data-live-search="true">
+                                                                        @foreach (var h in ViewBag.HocVi)
+                                                                        {
+                                                                            if (h == hv.TenHocVi)
+                                                                            {
+                                                                                <option selected>@h</option>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <option>@h</option>
+                                                                            }
+                                                                        }
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="form-group col-md-4">
+                                                                    <label for="trinhDo@(hv.MaHocVan)">Tên trình độ:</label>
+                                                                    <select id="trinhDo@(hv.MaHocVan)" name="hv_TrinhDo@(hv.MaHocVan)" class="form-control selectpicker" data-live-search="true">
+                                                                        @foreach (var td in ViewBag.TrinhDo)
+                                                                        {
+                                                                            if (td == hv.TenTrinhDo)
+                                                                            {
+                                                                                <option selected>@td</option>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <option>@td</option>
+                                                                            }
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-4">
+                                                                    <label for="noiDaoTao@(hv.MaHocVan)">Nơi đào tạo:</label>
+                                                                    <input type="text" class="form-control" name="hv_NoiDaoTao@(hv.MaHocVan)" id="noiDaoTao@(hv.MaHocVan)" value="@hv.NoiDaoTao" placeholder="Nhập Nơi đào tạo">
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label for="nuocDaoTao@(hv.MaHocVan)">Nước đào tạo:</label>
+                                                                    <input type="text" class="form-control" id="nuocDaoTao@(hv.MaHocVan)" name="hv_NuocDaoTao@(hv.MaHocVan)" value="@hv.NuocDaoTao" placeholder="Nhập Nước đào tạo">
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label for="heDaoTao@(hv.MaHocVan)">Hệ đào tạo:</label>
+                                                                    <select id="heDaoTao@(hv.MaHocVan)" name="hv_HeDaoTao@(hv.MaHocVan)" class="form-control selectpicker" data-live-search="true">
+                                                                        @foreach (var hdt in ViewBag.HeDaoTao)
+                                                                        {
+                                                                            if (hdt == hv.HeDaoTao)
+                                                                            {
+                                                                                <option selected>@hdt</option>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <option>@hdt</option>
+                                                                            }
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="ngayBDHocVan@(hv.MaHocVan)">Ngày bắt đầu: (MM-dd-yyyy)</label>
+                                                                    <input class="form-control" type="date" id="ngayBDHocVan@(hv.MaHocVan)" name="hv_TDBD@(hv.MaHocVan)" value="@hv.ThoiDiemNhan.ToString("yyyy-MM-dd")">
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="ngayKTHocVan@(hv.MaHocVan)">Ngày kết thúc: (MM-dd-yyyy)</label>
+                                                                    <input class="form-control" type="date" id="ngayKTHocVan@(hv.MaHocVan)" name="hv_TDKT@(hv.MaHocVan)" value="@hv.ThoiDiemKetThuc.ToString("yyyy-MM-dd")">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                                <br />
+                                                <div class="dropdown-divider"></div>
+                                                <h3>4. Chức vụ</h3>
+                                                <!-- Chuc vu Dang -->
+                                                <div class="form-row" style="padding-top: 15px;">
+                                                    <div class="form-group col-md-6">
+                                                        <h5 for="inputCVDang">Chức vụ Đảng <span class="btn btn-primary btn-circle btn-sm" id="add4" onclick="add(4);" style="cursor: pointer;"><i class="fas fa-plus"></i></span></h5>
+                                                    </div>
+                                                </div>
+
+                                                <div id="cvd_Container">
+                                                    @foreach (var cvd in ViewBag.GiaoVien.listChucVuDang)
+                                                    {
+                                                        <div class="element4 card bg-gray-200" style="margin-bottom: 10px;" id="hsCVD@(cvd.MaHS_CVD)">
+                                                            <span class="btn btn-danger btn-sm btn-circle" style="cursor: pointer;position: sticky;left: 100%;" onclick="del('hsCVD_@(cvd.MaHS_CVD)');"><i class="fas fa-minus"></i></span>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-6">
+                                                                    <input class="hidden" type="hidden" value="@cvd.MaHS_CVD" name="cvd_MaCVD@(cvd.MaHS_CVD)" />
+                                                                    <select id="hsTenCVD@(cvd.MaHS_CVD)" name="cvd_TenCVD@(cvd.MaHS_CVD)" class="form-control Dang selectpicker" data-live-search="true">
+                                                                        @foreach (var cv in ViewBag.CVD)
+                                                                        {
+                                                                            if (cvd.TenCVD == cv.TenCVD)
+                                                                            {
+                                                                                <option selected>@cv.TenCVD</option>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <option>@cv.TenCVD</option>
+                                                                            }
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <input class="form-control" type="date" name="cvd_TDBD@(cvd.MaHS_CVD)" id="hsNgayBDCVD@(cvd.MaHS_CVD)" value="@cvd.ThoiDiemNhan.ToString("yyyy-MM-dd")">
+                                                                    <small id="emailHelp" class="form-text text-muted">Ngày bắt đầu: (MM-dd-yyyy)</small>
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <input class="form-control" type="date" name="cvd_TDKT@(cvd.MaHS_CVD)" id="hsNgayKTCVD@(cvd.MaHS_CVD)" value="@cvd.ThoiDiemKetThuc.ToString("yyyy-MM-dd")">
+                                                                    <small id="emailHelp" class="form-text text-muted">Ngày kết thúc: (MM-dd-yyyy)</small>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                                <!-- Chuc vu chinh quyen -->
+                                                <div class="form-row" style="padding-top: 15px;">
+                                                    <div class="form-group col-md-6">
+                                                        <h5 for="inputCVDang">Chức vụ Chính quyền <span class="btn btn-primary btn-circle btn-sm" id="add5" onclick="add(5);" style="cursor: pointer;"><i class="fas fa-plus"></i></span></h5>
+                                                    </div>
+                                                </div>
+                                                <div id="cvcq_Container">
+                                                    @foreach (var cvcq in ViewBag.GiaoVien.listCVCQ)
+                                                    {
+                                                        <div class="element5 card bg-gray-200" style="margin-bottom: 10px;" id="hsCVCQ@(cvcq.MaHS_CVCQ)">
+                                                            <span class="btn btn-danger btn-sm btn-circle" style="cursor: pointer;position: sticky;left: 100%;" onclick="del('hsCVCQ_@(cvcq.MaHS_CVCQ)');"><i class="fas fa-minus"></i></span>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-6">
+                                                                    <input type="hidden" class="hidden" name="cvcq_MaCVCQ@(cvcq.MaHS_CVCQ)" value="@cvcq.MaHS_CVCQ" />
+                                                                    <select id="hsTenCVCQ@(cvcq.MaHS_CVCQ)" name="cvcq_TenCVCQ@(cvcq.MaHS_CVCQ)" class="form-control selectpicker" data-live-search="true">
+                                                                        @foreach (var cv in ViewBag.CVCQ)
+                                                                        {
+                                                                            if (cvcq.TenCVCQ == cv.TenCVCQ)
+                                                                            {
+                                                                                <option selected>@cv.TenCVCQ</option>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <option>@cv.TenCVCQ</option>
+                                                                            }
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <input class="form-control" type="date" name="cvcq_TDBD@(cvcq.MaHS_CVCQ)" id="hsNgayBDCVCQ@(cvcq.MaHS_CVCQ)" value="@cvcq.ThoiDiemNhan.ToString("yyyy-MM-dd")">
+                                                                    <small id="emailHelp" class="form-text text-muted">Ngày bắt đầu: (MM-dd-yyyy)</small>
+
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <input class="form-control" type="date" name="cvcq_TDKT@(cvcq.MaHS_CVCQ)" id="hsNgayKTCVCQ@(cvcq.MaHS_CVCQ)" value="@cvcq.ThoiDiemKetThuc.ToString("yyyy-MM-dd")">
+                                                                    <small id="emailHelp" class="form-text text-muted">Ngày kết thúc: (MM-dd-yyyy)</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                                <!-- Chuc vu chuyen mon nghiep vu -->
+                                                <div class="form-row" style="padding-top: 15px;">
+                                                    <div class="form-group col-md-6">
+                                                        <h5>Chức vụ Chuyên môn nghiệp vụ <span class="btn btn-primary btn-circle btn-sm" id="add6" onclick="add(6);" style="cursor: pointer;"><i class="fas fa-plus"></i></span></h5>
+                                                    </div>
+                                                </div>
+                                                <div id="cvcmnv_Container">
+                                                    @foreach (var cvcmnv in ViewBag.GiaoVien.listCVCMNV)
+                                                    {
+                                                        <div class="element6 card bg-gray-200" style="margin-bottom: 10px;" id="hsCVCMNV@(cvcmnv.MaHS_CVCMNV)">
+                                                            <span class="btn btn-danger btn-sm btn-circle" style="cursor: pointer;position: sticky;left: 100%;" onclick="del('hsCVCMNV_@(cvcmnv.MaHS_CVCMNV)');"><i class="fas fa-minus"></i></span>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-6">
+                                                                    <input class="hidden" type="hidden" name="cmnv_MaCMNV@(cvcmnv.MaHS_CVCMNV)" value="@cvcmnv.MaHS_CVCMNV" />
+                                                                    <select id="hsTenCVCQ@(cvcmnv.MaHS_CVCMNV)" name="cmnv_TenCMNV@(cvcmnv.MaHS_CVCMNV)" class="form-control selectpicker" data-live-search="true">
+                                                                        @foreach (var cv in ViewBag.CVCMNV)
+                                                                        {
+                                                                            if (cvcmnv.TenCVCMNV == cv.TenCVCMNV)
+                                                                            {
+                                                                                <option selected>@cv.TenCVCMNV</option>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <option>@cv.TenCVCMNV</option>
+                                                                            }
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <input class="form-control" type="date" name="cmnv_TDBD@(cvcmnv.MaHS_CVCMNV)" id="hsNgayBDCVCMNV@(cvcmnv.MaHS_CVCMNV)" value="@cvcmnv.ThoiDiemNhan.ToString("yyyy-MM-dd")">
+                                                                    <small id="emailHelp" class="form-text text-muted">Ngày bắt đầu: (MM-dd-yyyy)</small>
+
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <input class="form-control" type="date" name="cmnv_TDKT@(cvcmnv.MaHS_CVCMNV)" id="hsNgayKTCVCMNV@(cvcmnv.MaHS_CVCMNV)" value="@cvcmnv.ThoiDiemKetThuc.ToString("yyyy-MM-dd")">
+                                                                    <small id="emailHelp" class="form-text text-muted">Ngày kết thúc: (MM-dd-yyyy)</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+
+                                                <!-- Hoc ham -->
+                                                <div class="form-row" style="padding-top: 15px;">
+                                                    <div class="form-group col-md-6">
+                                                        <h5>Học hàm <span class="btn btn-primary btn-circle btn-sm" id="add7" onclick="add(7);" style="cursor: pointer;"><i class="fas fa-plus"></i></span></h5>
+                                                    </div>
+                                                </div>
+
+
+                                                <div id="hh_Container">
+                                                    @foreach (var hh in ViewBag.GiaoVien.listHocHam)
+                                                    {
+                                                        <div class="element7 card bg-gray-200" style="margin-bottom: 10px;" id="hsHocHam@(hh.MaHS_HocHam)">
+                                                            <span class="btn btn-danger btn-sm btn-circle" style="cursor: pointer;position: sticky;left: 100%;" onclick="del('hsHocHam_@(hh.MaHS_HocHam)');"><i class="fas fa-minus"></i></span>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-6">
+                                                                    <input class="hidden" type="hidden" name="hh_MaHocHam@(hh.MaHS_HocHam)" value="@hh.MaHS_HocHam" />
+                                                                    <select id="hsTenHocHam@(hh.MaHS_HocHam)" name="hh_TenHocHam@(hh.MaHS_HocHam)" class="form-control selectpicker" data-live-search="true">
+                                                                        @foreach (var h in ViewBag.HocHam)
+                                                                        {
+                                                                            if (hh.TenHocHam == h.TenHocHam)
+                                                                            {
+                                                                                <option selected>@h.TenHocHam</option>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <option>@h.TenHocHam</option>
+                                                                            }
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <input class="form-control" type="date" name="hh_TDBD@(hh.MaHS_HocHam)" id="hsNgayBDHH@(hh.MaHS_HocHam)" value="@hh.ThoiDiemNhan.ToString("yyyy-MM-dd")">
+                                                                    <small id="emailHelp" class="form-text text-muted">Ngày bắt đầu: (MM-dd-yyyy)</small>
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <input class="form-control" type="date" name="hh_TDKT@(hh.MaHS_HocHam)" id="hsNgayKTHH@(hh.MaHS_HocHam)" value="@hh.ThoiDiemKetThuc.ToString("yyyy-MM-dd")">
+                                                                    <small id="emailHelp" class="form-text text-muted">Ngày kết thúc: (MM-dd-yyyy)</small>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                                <br />
+                                                <div class="dropdown-divider"></div>
+                                                <button type="submit" class="btn btn-primary ">Cập nhật</button>
+                                            </form>
+                                            <!-- End Form Tag -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- End Tabs -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Nhóm 2 Thực tập Cơ sở dữ liệu - Lê Minh Hiếu - Trịnh Việt Anh - Nguyễn Anh Tùng</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+
+
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#topPage">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <script>
+        var count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0, count7 = 0;
+
+        function del(which){
+            if (which.includes("_new")) {
+                document.getElementsByClassName(which)[0].remove();
+            } else {
+                console.log(which);
+                if (confirm("Bạn có chắc là bạn muốn xóa ?")) {
+                    var deleteName = which.split("_")[0];
+                    var deleteId = which.split("_")[1];
+                    var maGV = @ViewBag.GiaoVien.MaGV;
+                    var deleteItem = { mgv: maGV, deleteName: deleteName, deleteId: deleteId };
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Xoa","GiaoVien")",
+                        data: JSON.stringify(deleteItem),
+                        contentType: "application/json; charset: utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            if (response.success == true && response.redirectToIndex == false) {
+                                window.location.href = window.location.href;
+                            } else {
+                                window.location.href = "/GiaoVien";
+                            }
+                        }
+                    })
+
+
+                } else {
+                    
+                }
+            }
+        };
+
+
+        function add(which) {
+            switch (which) {
+                case 1:
+                    var container = document.getElementById("ls_Container");
+                    count1++;
+                    var elem = document.createElement('div');
+                    var addThis =
+                        `
+                            <div class="element1 ls_new` + count1 +` card bg-gray-200" style="padding-top: 10px; margin-top: 10px; margin-bottom: 10px;">
+                                <span class="btn btn-danger btn-sm btn-circle" style="cursor: pointer;position: sticky;left: 100%;" onclick="del('ls_new` + count1 + `');"><i class="fas fa-minus"></i></span>
+                                <div class="form-row">
+                                    <input class="hidden" type="hidden" value="`+ count1 + `" name="ls_new_id` + count1 + `" />
+                                    <div class="form-group col-md-4">
+                                        <label for="ls_new_ThoiGian`+ count1 + `">Ngày bắt đầu: (MM-dd-yyyy)</label>
+                                        <input class="form-control" type="date" name="ls_new_ThoiGian`+ count1 + `" id="ls_new_ThoiGian` + count1 + `" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="ls_new_Phuong`+ count1 + `">Phường:</label>
+                                        <input type="text" class="form-control" name="ls_new_Phuong`+ count1 + `" id="ls_new_Phuong` + count1 + `" required placeholder="Nhập Phường">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="ls_new_Quan` + count1 + `">Quận:</label>
+                                        <input type="text" class="form-control" name="ls_new_Quan` + count1 + `" id="ls_new_Quan` + count1 + `" required placeholder="Nhập Quận">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="ls_new_ThanhPho`+ count1 + `">Thành phố:</label>
+                                                <select id="ls_new_ThanhPho`+ count1 + `" name="ls_new_ThanhPho` + count1 + `" class="form-control selectpicker" data-live-search="true">
+                                                    @foreach (var tp in ViewBag.TinhThanhPho)
+                                                    {
+                                                        <option>@tp</option>
+                                                    }
+                                                </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="ls_new_DTNR`+ count1 + `">Số điện thoại nhà riêng:</label>
+                                        <input class="form-control" type="tel" name="ls_new_DTNR`+ count1 + `" id="ls_new_DTNR` + count1 + `" required placeholder="Nhập SĐT Nhà Riêng">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="ls_new_DTDD`+ count1 + `">Số điện thoại di động</label>
+                                        <input class="form-control" type="tel" name="ls_new_DTDD`+ count1 + `" id="ls_new_DTDD` + count1 + `" required placeholder="Nhập SĐT Di Động">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="ls_new_Email`+ count1 + `">Email:</label>
+                                        <input type="email" class="form-control" name="ls_new_Email`+ count1 + `" id="ls_new_Email` + count1 + `" aria-describedby="emailHelp" placeholder="Nhập email" required>
+                                        <small id="emailHelp" class="form-text text-muted">Nhập đúng format email.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    elem.innerHTML = addThis;
+                    container.appendChild(elem);
+                    break;
+                case 2:
+                    var container = document.getElementById("tn_Container");
+                    count2++;
+                    var elem = document.createElement('div');
+                    var addThis =
+                        `
+                        <div class="element2 tn_new`+ count2 +` card bg-gray-200" style="padding-top: 10px; margin-top: 10px; margin-bottom: 10px;">
+                            <span class="btn btn-danger btn-sm btn-circle" style="cursor: pointer;position: sticky;left: 100%;" onclick="del('tn_new` + count2 + `');"><i class="fas fa-minus"></i></span>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <input class="hidden" type="hidden" value="`+ count2 + `" name="tn_new_id` + count2 + `" />
+                                    <label for="tn_new_Ten`+ count2 + `">Họ và tên thân nhân:</label>
+                                    <input type="text" class="form-control" id="tn_new_Ten`+ count2 + `" name="tn_new_Ten` + count2 + `" required placeholder="Họ và tên">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="tn_new_GioiTinh`+ count2 + `">Giới tính:</label>
+                                    <select id="tn_new_GioiTinh`+ count2 + `" name="tn_new_GioiTinh` + count2 + `" class="form-control selectpicker" data-live-search="true">
+                                            <option>Nam</option>
+                                            <option>Nữ</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="tn_new_NgaySinh`+ count2 + `">Ngày sinh:</label>
+                                    <input class="form-control" type="date" id="tn_new_NgaySinh`+ count2 + `" name="tn_new_NgaySinh` + count2 + `" required>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="tn_new_NgheNghiep`+ count2 + `">Nghề nghiệp:</label>
+                                    <input type="text" class="form-control" id="tn_new_NgheNghiep`+ count2 + `" name="tn_new_NgheNghiep` + count2 + `" required placeholder="Nghề nghiệp">
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    elem.innerHTML = addThis;
+                    container.appendChild(elem);
+                    break;
+                case 3:
+                    var container = document.getElementById("hv_Container");
+                    count3++;
+                    var elem = document.createElement('div');
+                    var addThis =
+                    `
+                        <div class="element3 hv_new`+ count3 +` card bg-gray-200" style="padding-top: 10px; margin-top: 10px; margin-bottom: 10px;">
+                            <span class="btn btn-danger btn-sm btn-circle" style="cursor: pointer;position: sticky;left: 100%;" onclick="del('hv_new` + count3 + `');"><i class="fas fa-minus"></i></span>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <input type="hidden" class="hidden" name="hv_new_id`+ count3 +`" value="`+ count3 +`" />
+                                    <label for="hv_new_NamCap`+ count3 +`">Năm cấp:</label>
+                                    <input type="number" min="1900" class="form-control" name="hv_new_NamCap`+ count3 +`" id="hv_new_NamCap`+ count3 +`" required placeholder="Chọn năm cấp">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="hv_new_HocVi`+ count3 +`">Học vị:</label>
+                                    <select id="hv_new_HocVi`+ count3 +`" name="hv_new_HocVi`+ count3 +`" class="form-control selectpicker"
+                                        data-live-search="true">
+                                        @foreach (var h in ViewBag.HocVi)
+                                        {
+                                        <option>@h</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="hv_new_TrinhDo`+ count3 +`">Tên trình độ:</label>
+                                    <select id="hv_new_TrinhDo`+ count3 +`" name="hv_new_TrinhDo`+ count3 +`" class="form-control selectpicker"
+                                        data-live-search="true">
+                                        @foreach (var td in ViewBag.TrinhDo)
+                                        {
+                                        <option>@td</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="hv_new_NoiDaoTao`+ count3 +`">Nơi đào tạo:</label>
+                                    <input type="text" class="form-control" name="hv_new_NoiDaoTao`+ count3 +`"
+                                        id="hv_new_NoiDaoTao`+ count3 +`" required placeholder="Nhập Nơi đào tạo">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="hv_new_NuocDaoTao`+ count3 +`">Nước đào tạo:</label>
+                                    <input type="text" class="form-control" id="hv_new_NuocDaoTao`+ count3 +`" name="hv_new_NuocDaoTao`+ count3 +`" required placeholder="Nhập Nước đào tạo">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="hv_new_HeDaoTao`+ count3 +`">Hệ đào tạo:</label>
+                                    <select id="hv_new_HeDaoTao`+ count3 +`" name="hv_new_HeDaoTao`+ count3 +`" class="form-control selectpicker" data-live-search="true">
+                                        @foreach (var hdt in ViewBag.HeDaoTao)
+                                        {
+                                        <option>@hdt</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="hv_new_NgayBatDau`+ count3 +`">Ngày bắt đầu: (MM-dd-yyyy)</label>
+                                    <input class="form-control" type="date" id="hv_new_NgayBatDau`+ count3 +`" name="hv_new_NgayBatDau`+ count3 +`" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="hv_new_NgayKetThuc`+ count3 +`">Ngày kết thúc: (MM-dd-yyyy)</label>
+                                    <input class="form-control" type="date" id="hv_new_NgayKetThuc`+ count3 +`" name="hv_new_NgayKetThuc`+ count3 +`" required>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                    elem.innerHTML = addThis;
+                    container.appendChild(elem);
+                    break;
+                case 4:
+                    var container = document.getElementById("cvd_Container");
+                    count4++;
+                    var elem = document.createElement('div');
+                    var addThis =
+                        `
+                        <div class="element4 cvd_new`+ count4 +` card bg-gray-200" style="margin-bottom: 10px;">
+                            <span class="btn btn-danger btn-sm btn-circle" style="cursor: pointer;position: sticky;left: 100%;" onclick="del('cvd_new` + count4 + `');"><i class="fas fa-minus"></i></span>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <input class="hidden" type="hidden" value="`+ count4 + `" name="cvd_new_id` + count4 + `" />
+                                    <select id="cvd_new_TenCVD` + count4 + `" name="cvd_new_TenCVD` + count4 + `" class="form-control Dang selectpicker" data-live-search="true">
+                                        @foreach (var cv in ViewBag.CVD)
+                                        {
+                                            <option>@cv.TenCVD</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <input class="form-control" type="date" name="cvd_new_NgayBatDau` + count4 + `" id="cvd_new_NgayBatDau` + count4 + `" required>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <input class="form-control" type="date" name="cvd_new_NgayKetThuc` + count4 + `" id="cvd_new_NgayKetThuc` + count4 + `" required>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    elem.innerHTML = addThis;
+                    container.appendChild(elem);
+                    break;
+                case 5:
+                    var container = document.getElementById("cvcq_Container");
+                    count5++;
+                    var elem = document.createElement('div');
+
+                    var addThis =
+                        `
+                            <div class="element5 cvcq_new`+ count5 +` card bg-gray-200" style="margin-bottom: 10px;">
+                            <span class="btn btn-danger btn-sm btn-circle" style="cursor: pointer;position: sticky;left: 100%;" onclick="del('cvcq_new` + count5 + `');"><i class="fas fa-minus"></i></span>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input class="hidden" type="hidden" value="`+ count5 + `" name="cvcq_new_id` + count5 + `" />
+                                        <select id="cvcq_new_TenCVCQ` + count5 + `" name="cvcq_new_TenCVCQ` + count5 + `" class="form-control Dang selectpicker" data-live-search="true">
+                                            @foreach (var cv in ViewBag.CVCQ)
+                                            {
+                                                <option>@cv.TenCVCQ</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <input class="form-control" type="date" name="cvcq_new_NgayBatDau` + count5 + `" id="cvcq_new_NgayBatDau` + count5 + `" required>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <input class="form-control" type="date" name="cvcq_new_NgayKetThuc` + count5 + `" id="cvcq_new_NgayKetThuc` + count5 + `" required>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                    elem.innerHTML = addThis;
+                    container.appendChild(elem);
+                    break;
+                case 6:
+                    var container = document.getElementById("cvcmnv_Container");
+                    count6++;
+                    var elem = document.createElement('div');
+                    var addThis =
+                        `
+                            <div class="element6 cvcmnv_new`+ count6 +` card bg-gray-200" style="margin-bottom: 10px;">
+                                <span class="btn btn-danger btn-sm btn-circle" style="cursor: pointer;position: sticky;left: 100%;" onclick="del('cvcmnv_new` + count6 + `');"><i class="fas fa-minus"></i></span>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input class="hidden" type="hidden" value="`+ count6 + `" name="cvcmnv_new_id` + count6 + `" />
+                                        <select id="cvcmnv_new_TenCVCMNV` + count6 + `" name="cvcmnv_new_TenCVCMNV` + count6 + `" class="form-control Dang selectpicker" data-live-search="true">
+                                            @foreach (var cv in ViewBag.CVCMNV)
+                                            {
+                                                <option>@cv.TenCVCMNV</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <input class="form-control" type="date" name="cvcmnv_new_NgayBatDau` + count6 + `" id="cvcmnv_new_NgayBatDau` + count6 + `" required>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <input class="form-control" type="date" name="cvcmnv_new_NgayKetThuc` + count6 + `" id="cvcmnv_new_NgayKetThuc` + count6 + `" required>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    elem.innerHTML = addThis;
+                    container.appendChild(elem);
+
+                    break;
+                case 7:
+                    var container = document.getElementById("hh_Container");
+                    count7++;
+                    var elem = document.createElement('div');
+
+                    var addThis =
+                        `
+                            <div class="element7 hh_new`+ count7 +` card bg-gray-200" style="margin-bottom: 10px;">
+                                <span class="btn btn-danger btn-sm btn-circle" style="cursor: pointer;position: sticky;left: 100%;" onclick="del('hh_new` + count7 + `');"><i class="fas fa-minus"></i></span>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input class="hidden" type="hidden" value="`+ count7 + `" name="hh_new_id` + count7 + `" />
+                                        <select id="hh_new_TenHocHam` + count7 + `" name="hh_new_TenHocHam` + count7 + `" class="form-control Dang selectpicker" data-live-search="true">
+                                            @foreach (var h in ViewBag.HocHam)
+                                            {
+                                                <option>@h.TenHocHam</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <input class="form-control" type="date" name="hh_new_NgayBatDau` + count7 + `" id="hh_new_NgayBatDau` + count7 + `" required>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <input class="form-control" type="date" name="hh_new_NgayKetThuc` + count7 + `" id="hh_new_NgayKetThuc` + count7 + `" required>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    elem.innerHTML = addThis;
+                    container.appendChild(elem);
+                    break;
+            }
+        }
+
+    </script>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/Content/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="~/Scripts/sb-admin-2.min.js"></script>
+</body>
+</html>

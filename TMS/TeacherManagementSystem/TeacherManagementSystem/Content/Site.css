@@ -1,0 +1,58 @@
+﻿
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.nav-back-primary {
+    background-color: #449eff !important;
+    transition: all 0.6s;
+}
+
+    .nav-back-primary:hover {
+        background-color: #6db1f9 !important;
+    }
+
+.no-pad {
+    padding: 0 !important;
+}
+
+.pad-tb-30 {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+}
+
+.page {
+    background-color: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.info-col {
+    background-color: #F2F2F2 !important;
+}
+
+.info-data {
+    background-color: #DCE6F1 !important;
+}
+
+.page {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.border-1-white {
+    border: 1px solid white;
+}
+
+.border-1-red {
+    border: 1px solid red;
+}
+
+.pad-b-20 {
+    padding-bottom: 20px;
+}
